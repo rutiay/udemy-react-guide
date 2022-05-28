@@ -1,9 +1,18 @@
-import './App.css';
+import { useState } from "react";
+import NewUser from "./components/NewUser";
+import "./App.css";
+import UsersList from "./components/UsersList";
 
 function App() {
+  const [usersList, setUsersList] = useState([]);
+
+  const addNewUser = (user) => {
+    setUsersList((prevUsersList) => [user, ...prevUsersList]);
+  };
   return (
     <div className="App">
-      <h1>Users Maker App</h1>
+      <NewUser onAddUser={addNewUser} />
+      <UsersList users={usersList}/>
     </div>
   );
 }
