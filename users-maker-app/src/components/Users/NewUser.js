@@ -1,5 +1,7 @@
 import { useState } from "react";
-import Message from "./Message";
+import Message from "../Message";
+import Card from "../UI/Card";
+import Button from "../UI/Button";
 import styles from "./NewUser.module.css";
 
 const NewUser = (props) => {
@@ -31,14 +33,16 @@ const NewUser = (props) => {
   };
 
   return (
-    <form onSubmit={newUserSubmitHandler}>
-      <label>Username</label>
-      <input type="text" value={name} onChange={nameChangeHandler} />
-      <label>Age (Years)</label>
-      <input type="number" value={age} onChange={ageChangeHandler} />
-      <button type="submit">Add User</button>
-      {errorMessage && <Message message={errorMessage} />}
-    </form>
+    <Card className={styles.input}>
+      <form onSubmit={newUserSubmitHandler}>
+        <label htmlFor="username">Username</label>
+        <input id="username" type="text" onChange={nameChangeHandler} />
+        <label htmlFor="age">Age (Years)</label>
+        <input id="age" type="number" onChange={ageChangeHandler} />
+        <Button type="submit">Add User</Button>
+        {errorMessage && <Message message={errorMessage} />}
+      </form>
+    </Card>
   );
 };
 
